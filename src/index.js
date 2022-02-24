@@ -5,7 +5,7 @@ import GlobalStyle from "./style/GlobolStyle"
 
 ReactDOM.render(
   <>
-    <App/>,
+    <App/>
     <GlobalStyle/>
   </>,
   document.getElementById('root')

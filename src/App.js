@@ -2,13 +2,21 @@ import { Notes } from "./components/Notes";
 import styled from "styled-components";
 import BG from "./BG.jpg"
 import { Brown } from "./style/GlobolStyle";
+import { Add } from "./components/Add";
+import { Modal } from "./components/Modal";
+import { useState } from "react";
 function App() {
+  const [isOpenModal, setIsOpenModal] = useState(false)
   return (
     <AppStyle className="App">
       <h1 className="App-title">YOUR NOTES</h1>
       <div className="container">
         <Notes/>
       </div>
+      <Add setIsOpenModal = {setIsOpenModal}/>
+      {
+        isOpenModal ? <Modal setIsOpenModal = {setIsOpenModal}/> : ''
+    }
     </AppStyle>
   );
 }
