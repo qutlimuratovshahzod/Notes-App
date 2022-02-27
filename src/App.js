@@ -13,9 +13,9 @@ function App() {
       <div className="container">
         <Notes/>
       </div>
-      <Add setIsOpenModal = {setIsOpenModal}/>
+      <Add setIsOpenModal={setIsOpenModal}/>
       {
-        isOpenModal ? <Modal setIsOpenModal = {setIsOpenModal}/> : ''
+        isOpenModal ? <Modal setIsOpenModal={setIsOpenModal}/> : ''
     }
     </AppStyle>
   );

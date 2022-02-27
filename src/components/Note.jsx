@@ -4,19 +4,15 @@ import styled from 'styled-components'
 import { ReactComponent as Edit } from '../Edit.svg'
 import {ReactComponent as Delete} from '../Delete.svg'
 import { Black, Green, Red } from '../style/GlobolStyle'
+import { useStore } from '../store'
 
 export const Note = () => {
-    const date = new Date()
-    const note = {
-    title:'Note',
-    date: date.toLocaleDateString(),
-    description:'Loremmmmmmmm loremmm',
-    isChange: false,
-    id: nanoid()
-}
-
+ const{ notes } = useStore();
   return (
-    <NoteStyle className="note">
+    <>
+    {notes.map((note, index)=>{
+       return(
+    <NoteStyle key={index} className="note">
         <div className="note-head">
             <h2 className="note-title">{note.title}</h2>
             <span className='note-date'>{note.date}</span>
@@ -27,8 +23,13 @@ export const Note = () => {
             <button><Edit/></button>
             </div>
     </NoteStyle>
-  )
-}
+       );   
+        })}
+    </>
+    );
+};
+
+
 const NoteStyle = styled.div `
     width: 350px;
     border-radius: 16px;

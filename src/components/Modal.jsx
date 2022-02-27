@@ -1,17 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { BsBookmarkCheck } from "react-icons/bs"
 import { FcCancel } from "react-icons/fc"
 import { Black, Green, Red } from '../style/GlobolStyle'
+import{useStore} from "../store"
+import {nanoid} from 'nanoid'
+
+
 export const Modal = ({setIsOpenModal}) => {
+const [ title, setTitle] = useState('')
+const[desc, setDesc] = useState('')
+
+
+
+const {notes, setNotes} = useStore()
+
+ const date = new Date()
+
+ function creatNote(){
+    let note={
+    title:title,
+    description:desc,
+    date:date.toLocaleDateString(),
+    id:nanoid(),
+    }
+    setNotes([...notes, note])
+ }
+
+
     return (
         <ModalStyle>
             <div className="modal-body">
                 <h2>Add Your Note Here...</h2>
-                <input className='modal-input' type="text" />
-                <textarea className='modal-description'></textarea>
+                <input 
+                value={title}
+                onChange = {(event)=>setTitle(event.target.value)}
+                className='modal-input' type="text" />
+                <textarea 
+                value={desc}
+                onChange = {(event)=>setDesc(event.target.value)} className='modal-description'></textarea>
                 <div className="modal-btns">
-                    <button><BsBookmarkCheck />Save</button>
+                    <button onClick={()=>creatNote()}><BsBookmarkCheck />Save</button>
                     <button onClick={()=> setIsOpenModal(false)}><FcCancel  />Canel</button>
                 </div>
             </div>
